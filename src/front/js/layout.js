@@ -34,7 +34,7 @@ import { Add_baby } from "./pages/add_baby";
 // Create your first component
 const Layout = () => {
     const location = useLocation();
-    const showFooter = !['/login', '/register'].includes(location.pathname);
+    const showFooter = !['/login', '/register', '/'].includes(location.pathname);
 
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL === "") return <BackendURL />;
 

@@ -123,6 +123,9 @@
 }
 
 .gestor-perfil-edit {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
     background-color: #FBEE84;
     height: 40px;
     color: #075E81;
@@ -136,7 +139,49 @@
     font-style: normal;
 }
 
+.gestor-perfil-edit:hover {
+    background-color: #075E81;
+    border-color: #075E81;
+    color: #FBEE84;
+}
+
+.gestor-perfil-edit-link {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-color: #FBEE84;
+    height: 40px;
+    color: #075E81;
+    width: 100%;
+    font-size: 14pt;
+    border-radius: 25pt;
+    outline: none;
+    border: 3px solid #FBEE84;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.gestor-perfil-edit-link:hover {
+    background-color: #075E81;
+    border-color: #075E81;
+}
+
+.gestor-perfil-edit-link a {
+    text-decoration: none;
+    color: #075E81;
+    width: 100%;
+    text-align: center; /* Esto asegura que el texto del link esté centrado */
+}
+
+.gestor-perfil-edit-link a:hover {
+    color: #FBEE84;
+}
+
 .gestor-perfil-save {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
     background-color: #075E81;
     height: 40px;
     color: #FBEE84;
@@ -211,6 +256,13 @@
     background-color: #075E81;
     color: #FBEE84;
     border-color: #075E81;
+}
+
+.gestor-perfil-bebes-no-found {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    color: #075E81;
+    font-size: 13pt;
 }
 
 @media (max-width: 1200px) {

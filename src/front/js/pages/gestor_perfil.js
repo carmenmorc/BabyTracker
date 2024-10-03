@@ -134,64 +134,57 @@ export const Gestor_perfil = () => {
                     </form>
                 </div>
 
-            <div className="form-gestor-perfil">
-                <label>Password</label>
-                <input
-                    type="text"
-                    name="password"
-                    placeholder="Password"
-                    value={userData.password}
-                    readOnly
-
-                />
-            </div>
-            <div className="form-gestor-perfil-reset">
-                <Link to="/change_password">Want to reset your password?</Link>
-            </div>
-
-            <div className="d-flex justify-content-end btn-container-gestor-bebe">
-                {isEditing ? (
-                    <button
-                        type="button"
-                        onClick={handleSave}
-                        className="btn gestor-perfil-save"
-                    >
-                        Save
-                    </button>
-                ) : (
-                    <button
-                        type="button"
-                        onClick={() => setIsEditing(true)}
-                        className="btn gestor-perfil-edit"
-                    >
-                        Edit
-                    </button>
-                )}
-            </div>
-            {status && <div className="status-message">{status}</div>}
-            <div className="gestor-perfil-bebes">
-                <label className="gestor-perfil-bebes-titulo">Babies</label>
-                {babies.length > 0 ? (
-                    <div className="gestor-perfil-bebes-bebe">
-                        <ul className="gestor-perfil-baby-list">
-                            {babies.map((baby) => (
-                                <li key={baby.id} className="gestor-perfil-baby-list-item">
-                                    <img src={baby.avatar_path || bebe1} alt={baby.name} className="baby-photo" />
-                                </li>
-                            ))}
-                            <li>
-                                <Link to="/add_baby" className="btn add-new-baby-text-gestor">
-                                    +
-                                </Link>
-                            </li>
-                        </ul>
+                <div className="form-gestor-perfil">
+                    <label>Password</label>
+                    <div className="gestor-perfil-edit-link">
+                        <Link to="/change_password">Want to reset your password?</Link>
                     </div>
-                ) : (
-                    <div className="gestor-perfil-bebes-no-found">No babies found</div>
-                )}
-            </div>
+                </div>
 
-        </div>
+
+                <div className="d-flex justify-content-end btn-container-gestor-bebe">
+                    {isEditing ? (
+                        <button
+                            type="button"
+                            onClick={handleSave}
+                            className="btn gestor-perfil-save"
+                        >
+                            Save
+                        </button>
+                    ) : (
+                        <button
+                            type="button"
+                            onClick={() => setIsEditing(true)}
+                            className="btn gestor-perfil-edit"
+                        >
+                            Edit
+                        </button>
+                    )}
+                </div>
+                {status && <div className="status-message">{status}</div>}
+                <div className="gestor-perfil-bebes">
+                    <label className="gestor-perfil-bebes-titulo">Babies</label>
+                    {babies.length > 0 ? (
+                        <div className="gestor-perfil-bebes-bebe">
+                            <ul className="gestor-perfil-baby-list">
+                                {babies.map((baby) => (
+                                    <li key={baby.id} className="gestor-perfil-baby-list-item">
+                                        <img src={baby.avatar_path || bebe1} alt={baby.name} className="baby-photo" />
+                                    </li>
+                                ))}
+                                <li>
+                                    <Link to="/add_baby" className="btn add-new-baby-text-gestor">
+                                        +
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    ) : (
+                        <div className="gestor-perfil-bebes-no-found">No babies found</div>
+                    )}
+                </div>
+
+            </div>
         </div >
     );
 };

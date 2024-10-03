@@ -45,7 +45,6 @@ export const AverageReportPage = () => {
         fetchData();
     }, [babyId, interval, actions, store.token, navigate]);
 
-    // Función para generar opciones del gráfico radial para una variable específica
     const generateChartOptions = (label, avg, max) => ({
         series: [Math.min((avg / max) * 100, 100)],
         options: {

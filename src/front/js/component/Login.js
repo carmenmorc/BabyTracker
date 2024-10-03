@@ -170,20 +170,20 @@ export const Login = () => {
 			</div>
 
 			{/* Modal */}
-			<div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div className="modal fade login-modal" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-header">
 							<h1 className="modal-title fs-5 login-text " id="exampleModalLabel">Reset Your Password</h1>
 							<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
-						<div className="modal-body">
+						<div className="modal-body padding-control1">
 							<form onSubmit={(e) => { e.preventDefault(); handleForgotPasswordSubmit(); }}>
 								<div className="mb-3 login-form-detail">
-									<label htmlFor="email" className="form-label"></label>
+									<label htmlFor="email" className="form-label padding-control1"></label>
 									<input
 										type="email"
-										className="form-control1"
+										className="form-control1 "
 										id="email"
 										value={forgotPasswordEmail}
 										onChange={(e) => setForgotPasswordEmail(e.target.value)}

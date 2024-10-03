@@ -170,7 +170,9 @@
 
 .closing-landing {
     width: 100%;
-    height: 100vh;
+    height: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
     background-color: #075E81;
     display: flex;
     align-items: center;
@@ -222,6 +224,11 @@
 .closing-landing-img {
     padding: 30pt;
 }
+
+/* .closing-landing-img svg {
+    height: 400px;
+    width: auto;
+} */
 
 @media (max-width: 1000px) {
     .header-landing {

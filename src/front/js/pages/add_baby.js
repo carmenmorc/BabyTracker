@@ -122,7 +122,7 @@ export const Add_baby = () => {
                         <input
                             type="number"
                             name="weight"
-                            placeholder="gr"
+                            placeholder="kg"
                             value={babyData.weight}
                             onChange={handleChange}
                             className="form-control"

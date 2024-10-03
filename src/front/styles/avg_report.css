@@ -57,6 +57,10 @@
 
 }
 
+.avg-chart-container h3 {
+    text-align: center;
+}
+
 .custom-select {
     align-items: center;
     text-align: center;

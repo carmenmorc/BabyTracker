@@ -109,6 +109,11 @@
     outline: none;
 }
 
+.btn-edit-gestor-bebe:hover {
+    background-color: #075E81;
+    color: #B4E49D;
+}
+
 .btn-home-gestor-bebe{
     background-color: #075E81;
     font-weight: 600;
@@ -129,6 +134,12 @@
     border-radius: 25px;
     outline: none;
 }
+
+.btn-save-gestor-bebe:hover {
+    background-color: #B4E49D;
+    color: #075E81;
+}
+
 .arrow-left {
     transform: rotate(180deg);
     display: inline-block;

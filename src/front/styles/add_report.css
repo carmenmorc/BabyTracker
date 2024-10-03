@@ -51,7 +51,7 @@
 .ar-form-grid {
     display: grid; 
     grid-template-columns: 1fr 1fr; 
-    gap: 20px;
+    gap: 0px;
 }
 
 .ar-column-one, .ar-column-two {

@@ -48,7 +48,7 @@ export const Gestor_bebe = () => {
         const success = await actions.updateBabyData(editableData);
         if (success) {
             console.log("Baby edited successfully!");
-            setIsEditing(false); // Cambia el estado a false después de mostrar la alerta
+            setIsEditing(false); 
         } else {
             alert("Error saving data");
         }
