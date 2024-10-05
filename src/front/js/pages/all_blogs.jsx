@@ -54,13 +54,13 @@ export const All_Blogs = props => {
                                 </h5>
                             </div>
                         </Link>
-                        {isAdmin && (
+                        {/* {isAdmin && (
                             <div className="all-blogs-btn-container mt-3">
                                 <Link to={`/edit_blog/${blog.type}/${blog.id}`} className="btn btn-warning all-blogs-btn">
                                     <FontAwesomeIcon icon={faPencil} /> Edit Blog
                                 </Link>
                             </div>
-                        )}
+                        )} */}
                     </div>
                 ))}
             </div>

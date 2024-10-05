@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+.form-control-title {
+    max-height: 40px; 
+    max-width: 500px; 
+}
+
+.form-control-izq-blog {
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.form-control-izq-blog  input {
+    min-width: 500px;
+}
+
 /* Contenedor Principal */
 .blog-detail-container-bg {
     padding: 0;
@@ -152,6 +166,33 @@
 .blog-detail-btn:hover {
     background-color: #075E81;
     color: white;
+    height: 40px;
+    border-radius: 25px;
+
+}
+
+.blog-detail-btn2{
+    background-color: #075E81;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    border-width: 0px;
+    font-size: 16pt;
+    height: 40px;
+    border-radius: 25px;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 20px;
+    margin-top: 16px;
+}
+
+.blog-detail-btn2:hover {
+    background-color: white;
+    color: #075E81;
     height: 40px;
     border-radius: 25px;
 
