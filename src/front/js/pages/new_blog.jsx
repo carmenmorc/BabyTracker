@@ -1,216 +1,206 @@
-import React, { useState, useContext, useEffect } from "react";
-import PropTypes from "prop-types";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTag, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Context } from "../store/appContext";
-import "../../styles/edit_blog.css";
+import "../../styles/blog_detail.css";
 
-export const New_Blog = props => {
-    const { store, actions } = useContext(Context);
-    const navigate = useNavigate();
-    
-    const [blogType, setBlogType] = useState("recipe");
+export const New_Blog = () => {
+    const [isEditing, setIsEditing] = useState(true);
     const [formData, setFormData] = useState({
-        author: "",
-        title: "",
-        img_header: "",
-        img_final: "",
-        source: "",
-        text_intro: "",
-        text_ingredients: "",
-        text_steps: "",
-        text: ""
+        type: 'recipe', // Valor predeterminado
+        title: '',
+        img_header: '',
+        img_final: '',
+        source: '',
+        text_intro: '',
+        text_ingredients: '',
+        text_steps: '',
+        text: ''
     });
 
-    useEffect(() => {
-        if (!store.token) {
-            navigate('/login');
-            return;
-        }
-    }, [store.token, navigate]);
+    const { store } = useContext(Context);
+    const navigate = useNavigate();
 
-    const handleChange = e => {
+    const handleChange = (e) => {
+        const { name, value } = e.target;
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [name]: value
         });
     };
 
-    const handleSubmit = async e => {
-        e.preventDefault();
-    
-        if (!formData.author || !formData.title || !formData.img_header || !formData.img_final || !formData.source) {
-            console.error("Required fields are missing");
-            return;
-        }
-    
-        if (blogType === "recipe" && (!formData.text_intro || !formData.text_ingredients || !formData.text_steps)) {
-            console.error("Required 'Recipe' fields are missing");
-            return;
-        }
-    
-        if (blogType === "news" && !formData.text) {
-            console.error("Required 'News' fields are missing");
-            return;
-        }
-
+    const handleSaveClick = async () => {
         try {
-            const response = await fetch(process.env.BACKEND_URL + "api/new_blog", {
+            const response = await fetch(`${process.env.BACKEND_URL}api/new_blog`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${store.token}`  
+                    "Authorization": `Bearer ${store.token}`
                 },
-                body: JSON.stringify({
-                    type: blogType,
-                    ...formData
-                })
+                body: JSON.stringify(formData)
             });
-    
+
             if (response.ok) {
                 const data = await response.json();
                 console.log("Blog created successfully:", data);
-                navigate("/blog");
+                navigate("/blog"); // Redireccionar a la lista de blogs tras la creación exitosa
             } else {
                 const errorData = await response.json();
-                console.error("Error creating Blog:", errorData);
+                console.error("Failed to create blog:", errorData);
             }
         } catch (error) {
             console.error("Error:", error);
         }
     };
 
+    const handleCancel = () => {
+        navigate("/blog"); // Redirigir a la lista de blogs si se cancela
+    };
+
     return (
-        <div className="container edit-blog-container">
-            <h1 className="display-4">New Blog</h1>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group edit-blog-form">
-                    <label htmlFor="type">Blog Type</label>
-                    <select
-                        name="type"
-                        value={blogType}
-                        onChange={e => setBlogType(e.target.value)}
-                        className="form-control"
-                    >
-                        <option value="recipe">Recipe</option>
-                        <option value="news">News</option>
-                    </select>
+        <div className="blog-detail-container-bg">
+            <div className="blog-detail-container position-relative">
+                <div className="blog-detail-left">
+                    <div className="image-container">
+                        {formData.img_header && (
+                            <img
+                                src={formData.img_header}
+                                className="img-header position-absolute"
+                                alt="Header Preview"
+                                style={{
+                                    top: 0,
+                                    left: 0,
+                                    right: 0,
+                                    bottom: 0,
+                                    height: '100%',
+                                    width: '100%',
+                                    objectFit: 'cover',
+                                    zIndex: -1
+                                }}
+                            />
+                        )}
+                        <div className="form-control-izq-blog">
+                            <div className="form-group">
+                                <div className="edit-blog-form-static fondo-blanco">
+                                    <strong>Type:</strong>
+                                </div>
+                                <select name="type" className="form-control-title edit-blog-form" value={formData.type} onChange={handleChange}>
+                                    <option value="recipe">Recipe</option>
+                                    <option value="news">News</option>
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <div className="edit-blog-form-static fondo-blanco">
+                                    <strong>Image:</strong>
+                                </div>
+                                <input
+                                    type="text"
+                                    name="img_header"
+                                    className="form-control-title edit-blog-form"
+                                    value={formData.img_header}
+                                    onChange={handleChange}
+                                    placeholder="Header Image URL"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <div className="edit-blog-form-static fondo-blanco">
+                                    <strong>Title:</strong>
+                                </div>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    className="form-control-title edit-blog-form"
+                                    value={formData.title}
+                                    onChange={handleChange}
+                                    placeholder="Title"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <div className="edit-blog-form-static fondo-blanco">
+                                    <strong>Source:</strong>
+                                </div>
+                                <input
+                                    type="text"
+                                    name="source"
+                                    className="form-control-title edit-blog-form "
+                                    value={formData.source}
+                                    onChange={handleChange}
+                                    placeholder="Source"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="form-group edit-blog-form">
-                    <label htmlFor="author">Author</label>
-                    <input
-                        type="text"
-                        name="author"
-                        value={formData.author}
-                        onChange={handleChange}
-                        className="form-control"
-                    />
-                </div>
-
-                <div className="form-group edit-blog-form">
-                    <label htmlFor="title">Title</label>
-                    <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleChange}
-                        className="form-control"
-                    />
-                </div>
-
-                <div className="form-group edit-blog-form">
-                    <label htmlFor="img_header">Header Image URL</label>
-                    <input
-                        type="text"
-                        name="img_header"
-                        value={formData.img_header}
-                        onChange={handleChange}
-                        className="form-control"
-                    />
-                </div>
-
-                {blogType === "recipe" && (
-                    <>
-                        <div className="form-group edit-blog-form">
-                            <label htmlFor="text_intro">Introduction</label>
+                <div className="blog-detail-right">
+                    <div className="blog-detail-text">
+                        <div className="form-group">
+                        <div className="edit-blog-form-static">
+                                    <strong>Introduction:</strong>
+                                </div>
                             <textarea
                                 name="text_intro"
+                                className="edit-blog-form"
                                 value={formData.text_intro}
                                 onChange={handleChange}
-                                className="form-control"
+                                placeholder="Introduction"
                             />
                         </div>
 
-                        <div className="form-group edit-blog-form">
-                            <label htmlFor="text_ingredients">Ingredients</label>
-                            <textarea
-                                name="text_ingredients"
-                                value={formData.text_ingredients}
-                                onChange={handleChange}
-                                className="form-control"
-                            />
-                        </div>
-
-                        <div className="form-group edit-blog-form">
-                            <label htmlFor="text_steps">Steps</label>
-                            <textarea
-                                name="text_steps"
-                                value={formData.text_steps}
-                                onChange={handleChange}
-                                className="form-control"
-                            />
-                        </div>
-                    </>
-                )}
-
-                {blogType === "news" && (
-                    <div className="form-group edit-blog-form">
-                        <label htmlFor="text">Content</label>
-                        <textarea
-                            name="text"
-                            value={formData.text}
-                            onChange={handleChange}
-                            className="form-control"
-                        />
+                        {formData.type === "recipe" ? (
+                            <>
+                                <div className="form-group">
+                                <div className="edit-blog-form-static">
+                                    <strong>Ingredients:</strong>
+                                </div>
+                                    <textarea
+                                        name="text_ingredients"
+                                        className="edit-blog-form-receta"
+                                        value={formData.text_ingredients}
+                                        onChange={handleChange}
+                                        placeholder="Ingredients"
+                                    />
+                                </div>
+                                <div className="form-group">
+                                <div className="edit-blog-form-static">
+                                    <strong>Steps:</strong>
+                                </div>
+                                    <textarea
+                                        name="text_steps"
+                                        className="edit-blog-form"
+                                        value={formData.text_steps}
+                                        onChange={handleChange}
+                                        placeholder="Steps"
+                                    />
+                                </div>
+                            </>
+                        ) : (
+                            <div className="form-group">
+                                <div className="edit-blog-form-static">
+                                    <strong>Text:</strong>
+                                </div>
+                                <textarea
+                                    name="text"
+                                    className="edit-blog-form"
+                                    value={formData.text}
+                                    onChange={handleChange}
+                                    placeholder="Main Content"
+                                />
+                            </div>
+                        )}
                     </div>
-                )}
 
-                <div className="form-group edit-blog-form">
-                    <label htmlFor="img_final">Final Image URL</label>
-                    <input
-                        type="text"
-                        name="img_final"
-                        value={formData.img_final}
-                        onChange={handleChange}
-                        className="form-control"
-                    />
+                    <div className="blog-detail-btn-container">
+                        <button className="btn btn-primary ml-3 blog-detail-btn2" onClick={handleSaveClick}>
+                            <FontAwesomeIcon icon={faSave} />
+                        </button>
+                        <button className="btn btn-danger ml-3 blog-detail-btn2" onClick={handleCancel}>
+                            <FontAwesomeIcon icon={faTimes} />
+                        </button>
+                    </div>
                 </div>
-
-                <div className="form-group edit-blog-form">
-                    <label htmlFor="source">Source</label>
-                    <input
-                        type="text"
-                        name="source"
-                        value={formData.source}
-                        onChange={handleChange}
-                        className="form-control"
-                    />
-                </div>
-
-                <button type="submit" className="btn btn-primary edit-blog-btn-save">
-                    Create Blog
-                </button>
-            </form>
-
-            <Link to="/blog">
-                <span className="btn btn-secondary mt-3 edit-blog-btn-save" role="button">
-                    All Blogs
-                </span>
-            </Link>
+            </div>
         </div>
     );
-};
-
-New_Blog.propTypes = {
-    match: PropTypes.object
 };

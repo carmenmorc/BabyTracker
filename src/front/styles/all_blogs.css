@@ -1,5 +1,158 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+.align-control {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+.arrows-control {
+    display: flex; /* Asegura que las flechas y los botones se alineen en fila */
+    align-items: center; /* Alinea verticalmente las flechas con las tarjetas */
+}
+
+.arrow-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #075E81;
+    margin: 0 10px;
+    padding: 10px;
+    height: 100%; /* Asegura que los botones ocupen toda la altura disponible */
+    display: flex;
+    align-items: center; /* Alinea el icono dentro del botón */
+}
+
+.overflow-control {
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    display: flex; /* Alinea las cards en una fila */
+    position: relative; /* Para que las flechas se posicionen correctamente */
+    width: 100%; /* Asegura que el contenedor ocupe el 100% del ancho */
+    max-width: calc(100% - 100px); /* Limita el ancho total, ajusta según sea necesario */
+    height: 520px; /* Asegúrate de que la altura sea la misma que la de las cards */
+    overflow-y: hidden;
+}
+
+.arrows-control {
+    align-items: center;
+    height: 400px;
+    margin-top: 0;
+    top: 0;
+}
+
+.align-control {
+    align-items: center; /* Alinea verticalmente los elementos dentro de este contenedor */
+    display: flex; /* Asegura que los elementos internos se alineen en fila */
+}
+
+.overflow-control {
+    overflow-x: hidden; /* Oculta el desplazamiento horizontal en el contenedor */
+    display: flex; /* Alinea las cards en una fila */
+    position: relative; /* Para que las flechas se posicionen correctamente */
+    width: 100%; /* Asegura que el contenedor ocupe el 100% del ancho */
+    max-width: 1450px; /* Limita el ancho total, ajusta según sea necesario */
+}
+
+.all-blogs-card {
+    flex: none; /* Evita que las cards se expandan */
+    width: 250px; /* Ajusta el ancho de las cards */
+    height: 400px; /* Ajusta la altura de las cards */
+    margin: 10px; /* Ajusta el margen para que no se vean tan pegadas */
+}
+
+.arrow-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #075E81;
+    margin: 0 10px;
+    padding: 10px;
+    z-index: 1;
+    align-items: center;
+    display: flex; /* Asegura que los botones se alineen correctamente */
+    height: 100%; /* Asegura que las flechas ocupen toda la altura disponible */
+}
+
+.arrow-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #075E81;
+    margin: 0 10px;
+    padding: 10px;
+    z-index: 1;
+    align-items: center;
+}
+
+.align-control {
+    align-items: center;
+}
+
+
+.arrow-button:hover {
+    color: #0a74a3; /* Color al pasar el mouse */
+}
+
+.overflow-control {
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    display: flex; /* Alinea las cards en una fila */
+    scroll-behavior: smooth; /* Desplazamiento suave */
+}
+
+.all-blogs-card {
+    flex: none; /* Evita que las cards se expandan */
+}
+
+.overflow-control {
+    overflow-x: hidden; /* Oculta el desplazamiento horizontal en el contenedor */
+    display: flex; /* Alinea las cards en una fila */
+    position: relative; /* Para que las flechas se posicionen correctamente */
+    max-width: calc(100% - 100px); /* Asegura que las flechas sean visibles */
+}
+
+.all-blogs-card {
+    flex: none; /* Evita que las cards se expandan */
+    width: 250px; /* Ajusta el ancho de las cards */
+    height: 400px; /* Ajusta la altura de las cards */
+    margin: 10px; /* Ajusta el margen para que no se vean tan pegadas */
+}
+
+.overflow-control {
+    overflow-x: hidden; /* Oculta el desplazamiento horizontal en el contenedor */
+    display: flex; /* Alinea las cards en una fila */
+    position: relative; /* Para que las flechas se posicionen correctamente */
+    width: 100%; /* Asegura que el contenedor ocupe el 100% del ancho */
+    max-width: 1450px; /* Limita el ancho total, ajusta según sea necesario */
+}
+
+.d-flex {
+    display: flex; /* Asegura que los elementos internos se alineen en fila */
+}
+
+.all-blogs-card {
+    flex: none; /* Evita que las cards se expandan */
+    width: 250px; /* Ajusta el ancho de las cards */
+    height: 400px; /* Ajusta la altura de las cards */
+    margin: 10px; /* Ajusta el margen para que no se vean tan pegadas */
+}
+
+.arrow-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #075E81;
+    margin: 0 10px;
+    padding: 10px;
+    z-index: 1;
+}
+
+.arrow-button:hover {
+    color: #0a74a3; /* Color al pasar el mouse */
+}
+
 .all-blogs-container {
     padding-top: 100px;
     min-height: 100vh;

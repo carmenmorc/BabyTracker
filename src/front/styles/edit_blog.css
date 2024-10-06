@@ -55,6 +55,18 @@
     color: white !important;
 }
 
+.fondo-blanco {
+    background-color: white;
+    border-radius: 25px;
+    max-width: 90px;
+    height: 35px; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 0.5rem;
+    padding: 4px;
+    padding-left: 7px;
+}
+
 .edit-blog-form label {
     font-weight: 600;
 }
