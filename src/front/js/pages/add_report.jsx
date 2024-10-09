@@ -238,7 +238,7 @@ export const AddReport = () => {
                                     step="0.1"
                                     value={water}
                                     onChange={(e) => setWater(e.target.value)}
-                                    placeholder="Liters"
+                                    placeholder="mL"
                                     required
                                 />
                             </div>

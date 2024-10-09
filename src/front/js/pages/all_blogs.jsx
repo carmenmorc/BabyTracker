@@ -17,7 +17,10 @@ export const All_Blogs = props => {
             try {
                 const response = await fetch(process.env.BACKEND_URL + "api/blog");
                 const data = await response.json();
-                setBlogs(data.data);
+                
+                const sortedBlogs = data.data.sort((a, b) => a.title.localeCompare(b.title));
+                
+                setBlogs(sortedBlogs);
             } catch (error) {
                 console.error("Error fetching blogs:", error);
             }

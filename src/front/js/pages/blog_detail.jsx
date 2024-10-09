@@ -10,6 +10,7 @@ export const BlogDetail = () => {
     const [blog, setBlog] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false); // Estado para verificar si es administrador
     const [formData, setFormData] = useState({
         title: '',
         img_header: '',
@@ -22,7 +23,7 @@ export const BlogDetail = () => {
     });
 
     const { store } = useContext(Context);
-    const navigate = useNavigate(); // Hook para redirección
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -51,8 +52,23 @@ export const BlogDetail = () => {
             }
         };
 
+        const checkAdminStatus = async () => {
+            try {
+                const response = await fetch(`${process.env.BACKEND_URL}api/check_admin`, {
+                    headers: {
+                        'Authorization': `Bearer ${store.token}`
+                    }
+                });
+                const data = await response.json();
+                setIsAdmin(data.is_admin); // Actualiza el estado de isAdmin
+            } catch (error) {
+                console.error("Error checking admin status:", error);
+            }
+        };
+
         fetchBlog();
-    }, [type, id]);
+        checkAdminStatus();
+    }, [type, id, store.token]);
 
     const handleEditClick = () => {
         setIsEditing(true);
@@ -85,11 +101,9 @@ export const BlogDetail = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log("Blog updated successfully:", data);
-                // Carga nuevamente el blog actualizado
                 setBlog(data.data);
-                // Salimos del modo edición
                 setIsEditing(false);
+                navigate('/blog');
             } else {
                 const errorData = await response.json();
                 console.error("Failed to update blog:", errorData);
@@ -257,22 +271,22 @@ export const BlogDetail = () => {
                     <div className="blog-detail-btn-container">
                         <Link to="/blog" className="btn btn-secondary mt-3 blog-detail-btn">➜</Link>
 
-                        {store.token && (
-                            isEditing ? (
-                                <>
-                                    <button className="btn btn-primary ml-3 blog-detail-btn2" onClick={handleSaveClick}>
-                                        <FontAwesomeIcon icon={faSave} />
-                                    </button>
-                                    <button className="btn btn-danger ml-3 blog-detail-btn2" onClick={handleCancelEdit}>
-                                        <FontAwesomeIcon icon={faTimes} />
-                                    </button>
-                                </>
-                            ) : (
-                                <button className="btn btn-primary ml-3 blog-detail-btn2" onClick={handleEditClick}>
-                                    <FontAwesomeIcon icon={faEdit} />
-                                </button>
-                            )
-                        )}
+                        {isAdmin && (
+                    isEditing ? (
+                        <>
+                            <button className="btn btn-primary ml-3 blog-detail-btn2" onClick={handleSaveClick}>
+                                <FontAwesomeIcon icon={faSave} />
+                            </button>
+                            <button className="btn btn-danger ml-3 blog-detail-btn2" onClick={handleCancelEdit}>
+                                <FontAwesomeIcon icon={faTimes} />
+                            </button>
+                        </>
+                    ) : (
+                        <button className="btn btn-primary ml-3 blog-detail-btn2" onClick={handleEditClick}>
+                            <FontAwesomeIcon icon={faEdit} />
+                        </button>
+                    )
+                )}
                     </div>
                 </div>
             </div>
